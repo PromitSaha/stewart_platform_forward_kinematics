@@ -1,0 +1,20 @@
+# === ROS 2 Python package cache ===
+*.pyc
+__pycache__/
+
+# === VSCode and editor-specific ===
+.vscode/
+.idea/
+*.swp
+
+# === Environment files ===
+.env
+*.env
+
+# === Auto-generated files ===
+*.launch.pyc
+*.urdf.pyc
+*.xacro.pyc
+
+# === Misc ===
+.DS_Store
