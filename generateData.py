@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 from inverseKinematics import inv_kinematics
 
+folderName = "stewart_fk_dataset_version_1_noisy"
+
 def rpy_deg_to_rad(rpy_deg):
     return np.deg2rad(np.array(rpy_deg, dtype=float))
 
@@ -24,7 +26,7 @@ def is_valid_extension(ext, min_ext, max_ext):
     return ext.shape[0] == 6 and np.all((ext >= min_ext) & (ext <= max_ext))
 
 def main():
-    OUT_DIR = "stewart_fk_dataset_50k"
+    OUT_DIR = folderName
     N_VALID = 50_000
 
     # Actuator limits
@@ -89,16 +91,16 @@ def main():
             "roll": rot[0], "pitch": rot[1], "yaw": rot[2],
         }
 
-        # if ADD_NOISE:
-        #     noise = rng.normal(0.0, noise_std_m, size=6)
-        #     row.update({
-        #         "e1_noisy": ext[0] + noise[0],
-        #         "e2_noisy": ext[1] + noise[1],
-        #         "e3_noisy": ext[2] + noise[2],
-        #         "e4_noisy": ext[3] + noise[3],
-        #         "e5_noisy": ext[4] + noise[4],
-        #         "e6_noisy": ext[5] + noise[5],
-        #     })
+        if ADD_NOISE:
+            noise = rng.normal(0.0, noise_std_m, size=6)
+            row.update({
+                "e1_noisy": ext[0] + noise[0],
+                "e2_noisy": ext[1] + noise[1],
+                "e3_noisy": ext[2] + noise[2],
+                "e4_noisy": ext[3] + noise[3],
+                "e5_noisy": ext[4] + noise[4],
+                "e6_noisy": ext[5] + noise[5],
+            })
 
         rows.append(row)
         valid += 1
