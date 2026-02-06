@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from inverseKinematics import inv_kinematics
 
-folderName = "stewart_fk_dataset_version_1_noisy"
+folderName = "data/v1_noisy"
 
 def rpy_deg_to_rad(rpy_deg):
     return np.deg2rad(np.array(rpy_deg, dtype=float))
@@ -15,9 +15,9 @@ def sample_pose(rng, cfg):
     y = rng.uniform(-cfg["xy_range_m"], cfg["xy_range_m"])
     z = rng.uniform(cfg["z_min_m"], cfg["z_max_m"])  # relative to home_pos inside IK
 
-    roll  = math.radians(rng.uniform(-cfg["roll_deg"],  cfg["roll_deg"]))
-    pitch = math.radians(rng.uniform(-cfg["pitch_deg"], cfg["pitch_deg"]))
-    yaw   = math.radians(rng.uniform(-cfg["yaw_deg"],   cfg["yaw_deg"]))
+    roll  = rng.uniform(-cfg["roll_deg"],  cfg["roll_deg"])
+    pitch = rng.uniform(-cfg["pitch_deg"], cfg["pitch_deg"])
+    yaw   = rng.uniform(-cfg["yaw_deg"],   cfg["yaw_deg"])
 
     return np.array([x, y, z], dtype=float), np.array([roll, pitch, yaw], dtype=float)
 
