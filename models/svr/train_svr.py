@@ -54,7 +54,7 @@ def main():
     # SVR hyperparams (start reasonable; later you can tune)
     parser.add_argument("--C", type=float, default=50.0)
     parser.add_argument("--gamma", type=str, default="scale")   # "scale" or float string
-    parser.add_argument("--epsilon", type=float, default=0.005)
+    parser.add_argument("--epsilon", type=float, default=0.05)
 
     # speed controls
     parser.add_argument("--train_limit", type=int, default=0,

@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from inverseKinematics import inv_kinematics
 
-folderName = "data/v1_noisy"
+folderName = "data/v1_clean"
 
 def rpy_deg_to_rad(rpy_deg):
     return np.deg2rad(np.array(rpy_deg, dtype=float))
@@ -38,9 +38,9 @@ def main():
         "xy_range_m": 0.45,
         "z_min_m":   0.0,
         "z_max_m":    0.202,
-        "roll_deg":    1.0,
-        "pitch_deg":   1.2,
-        "yaw_deg":    1.5,
+        "roll_deg":    58,
+        "pitch_deg":   70,
+        "yaw_deg":    86,
     }
 
     # Optional: add measurement noise to extensions (helps robustness)
@@ -91,16 +91,16 @@ def main():
             "roll": rot[0], "pitch": rot[1], "yaw": rot[2],
         }
 
-        if ADD_NOISE:
-            noise = rng.normal(0.0, noise_std_m, size=6)
-            row.update({
-                "e1_noisy": ext[0] + noise[0],
-                "e2_noisy": ext[1] + noise[1],
-                "e3_noisy": ext[2] + noise[2],
-                "e4_noisy": ext[3] + noise[3],
-                "e5_noisy": ext[4] + noise[4],
-                "e6_noisy": ext[5] + noise[5],
-            })
+        # if ADD_NOISE:
+        #     noise = rng.normal(0.0, noise_std_m, size=6)
+        #     row.update({
+        #         "e1_noisy": ext[0] + noise[0],
+        #         "e2_noisy": ext[1] + noise[1],
+        #         "e3_noisy": ext[2] + noise[2],
+        #         "e4_noisy": ext[3] + noise[3],
+        #         "e5_noisy": ext[4] + noise[4],
+        #         "e6_noisy": ext[5] + noise[5],
+        #     })
 
         rows.append(row)
         valid += 1
