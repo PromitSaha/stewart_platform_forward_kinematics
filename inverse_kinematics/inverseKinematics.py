@@ -1,7 +1,8 @@
 import numpy as np
 
 class inv_kinematics:
-    def __init__(self) -> None:
+    def __init__(self, verbose: bool = True) -> None:
+        self.verbose = verbose
         self.home_pos= np.array([0, 0, 0.5628]) # home position of the platform
 
         pi = np.pi
@@ -78,7 +79,8 @@ class inv_kinematics:
         # Clamp to actuator range
         #extension = np.clip(extension, 0.0, stroke_length)
 
-        print("I.K 1 Raw leg lengths (m):", lll)
-        print("I.K 1 Actuator extensions (m):", extension)
+        if self.verbose:
+            print("I.K 1 Raw leg lengths (m):", lll)
+            print("I.K 1 Actuator extensions (m):", extension)
 
         return extension
