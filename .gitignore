@@ -19,3 +19,14 @@ __pycache__/
 # === Misc ===
 .DS_Store
 *.joblib
+
+# === Python tooling ===
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# === Generated datasets and experiment outputs ===
+data/*
+!data/.gitkeep
+model/*/artifacts/*
+!model/*/artifacts/.gitkeep
